@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>miluo</title>
+    <link>https://miluo-cc.github.io/</link>
+    <description>Recent content on miluo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://miluo-cc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo部署记录</title>
+      <link>https://miluo-cc.github.io/post/hugo%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 13 May 2020 13:11:31 +0800</pubDate>
+      
+      <guid>https://miluo-cc.github.io/post/hugo%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</guid>
+      <description>下载Hugo  下载地址 版本：v0.70.0 平台：win10 下载后解压是一个应用程序无需安装(不愧是go)，选好放置目录添加到环境变量 验证是否安装成功：hugo version  创建网站   使用命令：hugo new site [name]，生成根目录，目录结构如下：
+├─archetypes ├─content ├─data ├─layouts ├─static ├─themes └─config.toml   选择主题  主题网站 选择一个如mixedpaper下载到themes目录下：git clone https://themes.gohugo.io/mixedpaper/ themes/mixedpaper  创建一篇文章   使用命令：hugo new post/test.md，生成在content目录下
+  文件默认内容如下
+title: &amp;quot;test&amp;quot; date: 2020-05-13T13:11:31+08:00 draft: true   其中draft表示是否草稿文件，编辑完将其改为 false，否则编译时会跳过
+  测试  使用命令：hugo server --theme=mixedpaper --buildDrafts buildDrafts表示包括草稿 浏览器打开 http://localhost:1313查看页面  修改配置文件   修改config.toml，如下示例，具体配置要看对应主题的参数要求
+baseURL = &amp;quot;https://miluo-cc.github.io/&amp;quot; languageCode = &amp;quot;zh-CN&amp;quot; title = &amp;quot;miluo&amp;quot; theme = &amp;quot;mixedpaper&amp;quot; author = &amp;quot;miluo&amp;quot; copyright = &amp;quot;&amp;amp;copy; 2020. All rights reserved.&amp;quot;   部署到github   使用命令：hugo --baseUrl=&amp;quot;https://miluo-cc.github.io&amp;quot;
+  项目根目录多出public文件夹，里面是整个网站</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://miluo-cc.github.io/about/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://miluo-cc.github.io/about/</guid>
+      <description>Written in Go, Hugo is an open source static site generator available under the Apache License 2.0. Hugo supports TOML, YAML, and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+Hugo makes use of a variety of open source projects including:
+ Blackfriday Chroma Smartcrop Cobra Viper  Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
+Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.</description>
+    </item>
+    
+  </channel>
+</rss>

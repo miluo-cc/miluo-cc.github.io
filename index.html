@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.70.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>miluo</title>
+    
+		<link rel="shortcut icon" href="https://miluo-cc.github.io/favicon.ico" type="image/x-icon">
+    <meta name="theme-color" content="#ffffff">
+
+    
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/modern-normalize@0.6.0/modern-normalize.css"/>
+
+    
+    
+    
+    <link rel="stylesheet" href="https://miluo-cc.github.io/css/basic.min.8be53fffd231757375f4b7eb78dd0e1515cd45a761fefd573af23ada70f7041f.css"/>
+    <link rel="stylesheet" href="https://miluo-cc.github.io/css/main.min.b6fa7b924b80b12046f6789872dc27e20941d8f31566e8c4fd898f60467ce625.css"/>
+
+    
+    
+ 
+    
+    <link rel="alternate" type="application/rss+xml" href="https://miluo-cc.github.io/index.xml" title="miluo" />
+    </head>
+
+    <body>
+        <header id="header">
+  <div class="header_container">
+    <h1 class="sitetitle">
+      <a href="https://miluo-cc.github.io/" title="miluo">miluo</a>
+    </h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="https://miluo-cc.github.io/">Home</a></li>
+        
+          <li>
+            <a href="/about/">
+              
+              <span>About</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="/tags/">
+              
+              <span>Tags</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="/archives/">
+              
+              <span>Archives</span>
+            </a>
+          </li>
+        
+        <li class="hide-sm"><a href="https://miluo-cc.github.io/index.xml" type="application/rss+xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+        
+<section id="main" class="index">
+  <div class="post_list container">
+    
+    
+    <article class="post content">
+      <time datetime="2020-05-13T13:11:31&#43;0800" class="date">Wed, May 13, 2020</time>
+      <h3 class="title">
+        <a href="https://miluo-cc.github.io/post/hugo%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" title="Hugo部署记录">Hugo部署记录</a>
+      </h3>
+      <div class="post_content summary">
+        下载Hugo  下载地址 版本：v0.70.0 平台：win10 下载后解压是一个应用程序无需安装(不愧是go)，选好放置目录添加到环境变量 验证是否安装成功：hugo version  创建网站   使用命令：hugo new site [name]，生成根目录，目录结构如下：
+├─archetypes ├─content ├─data ├─layouts ├─static ├─themes └─config.toml   选择主题  主题网站 选择一个如mixedpaper下载到themes目录下：git clone https://themes.gohugo.io/mixedpaper/ themes/mixedpaper  创建一篇文章   使用命令：hugo new post/test.md，生成在content目录下
+  文件默认内容如下
+title: &quot;test&quot; date: 2020-05-13T13:11:31+08:00 draft: true   其中draft表示是否草稿文件，编辑完将其改为 false，否则编译时会跳过
+  测试  使用命令：hugo server --theme=mixedpaper --buildDrafts buildDrafts表示包括草稿 浏览器打开 http://localhost:1313查看页面  修改配置文件   修改config.toml，如下示例，具体配置要看对应主题的参数要求
+baseURL = &quot;https://miluo-cc.github.io/&quot; languageCode = &quot;zh-CN&quot; title = &quot;miluo&quot; theme = &quot;mixedpaper&quot; author = &quot;miluo&quot; copyright = &quot;&amp;copy; 2020. All rights reserved.&quot;   部署到github   使用命令：hugo --baseUrl=&quot;https://miluo-cc.github.io&quot;
+  项目根目录多出public文件夹，里面是整个网站
+				
+					<span class="hellip">&hellip;</span>
+				
+      </div>
+    </article>
+    
+    
+
+
+
+  </div>
+</section>
+
+        <a id="back_to_top" title="Go To Top" href="#">
+  <span>
+    <svg viewBox="0 0 24 24">
+      <path fill="none" d="M0 0h24v24H0z"></path>
+      <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"></path>
+    </svg>
+  </span>
+</a>
+
+        <footer id="footer">
+  <p>
+    <span>&copy; 2020 <a href="https://miluo-cc.github.io/" title="miluo">miluo</a> </span>
+    <span>Built with <a rel="nofollow" target="_blank" href="https:/gohugo.io">Hugo</a></span>
+    <span>Theme by <a rel="nofollow" target="_blank" href="https://github.com/wayjam/hugo-theme-mixedpaper">WayJam</a></span>
+  </p>
+
+  <script src="https://miluo-cc.github.io/js/main.min.eac174914a2c8d5b3cc7d2f766c41a23844a384c95187d52847b0b2e8c2b77a1.js" integrity="sha256-6sF0kUosjVs8x9L3ZsQaI4RKOEyVGH1ShHsLLowrd6E=" crossorigin="anonymous"></script>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+
+    <title>Hugo部署记录 | miluo</title>
+    
+		<link rel="shortcut icon" href="https://miluo-cc.github.io/favicon.ico" type="image/x-icon">
+    <meta name="theme-color" content="#ffffff">
+
+    
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/modern-normalize@0.6.0/modern-normalize.css"/>
+
+    
+    
+    
+    <link rel="stylesheet" href="https://miluo-cc.github.io/css/basic.min.8be53fffd231757375f4b7eb78dd0e1515cd45a761fefd573af23ada70f7041f.css"/>
+    <link rel="stylesheet" href="https://miluo-cc.github.io/css/main.min.b6fa7b924b80b12046f6789872dc27e20941d8f31566e8c4fd898f60467ce625.css"/>
+
+    
+    
+ 
+    </head>
+
+    <body>
+        <header id="header">
+  <div class="header_container">
+    <h1 class="sitetitle">
+      <a href="https://miluo-cc.github.io/" title="miluo">miluo</a>
+    </h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="https://miluo-cc.github.io/">Home</a></li>
+        
+          <li>
+            <a href="/about/">
+              
+              <span>About</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="/tags/">
+              
+              <span>Tags</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="/archives/">
+              
+              <span>Archives</span>
+            </a>
+          </li>
+        
+        <li class="hide-sm"><a href="https://miluo-cc.github.io/index.xml" type="application/rss+xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+        
+<section id="main">
+  <article class="post content">
+    <h2 class="title">Hugo部署记录</h2>
+    <div class="post_content">
+      <h1 id="下载hugo">下载Hugo</h1>
+<ul>
+<li><a href="https://github.com/gohugoio/hugo/releases">下载地址</a></li>
+<li>版本：v0.70.0</li>
+<li>平台：win10</li>
+<li>下载后解压是一个应用程序无需安装(不愧是go)，选好放置目录添加到环境变量</li>
+<li>验证是否安装成功：<code>hugo version</code></li>
+</ul>
+<h1 id="创建网站">创建网站</h1>
+<ul>
+<li>
+<p>使用命令：<code>hugo new site [name]</code>，生成根目录，目录结构如下：</p>
+<pre><code>├─archetypes
+├─content
+├─data
+├─layouts
+├─static
+├─themes
+└─config.toml
+</code></pre></li>
+</ul>
+<h1 id="选择主题">选择主题</h1>
+<ul>
+<li><a href="https://themes.gohugo.io/">主题网站</a></li>
+<li>选择一个如<code>mixedpaper</code>下载到<code>themes</code>目录下：<code>git clone https://themes.gohugo.io/mixedpaper/  themes/mixedpaper</code></li>
+</ul>
+<h1 id="创建一篇文章">创建一篇文章</h1>
+<ul>
+<li>
+<p>使用命令：<code>hugo new post/test.md</code>，生成在<code>content</code>目录下</p>
+</li>
+<li>
+<p>文件默认内容如下</p>
+<pre><code>title: &quot;test&quot;
+date: 2020-05-13T13:11:31+08:00
+draft: true
+</code></pre></li>
+<li>
+<p>其中<code>draft</code>表示是否草稿文件，编辑完将其改为 <code>false</code>，否则编译时会跳过</p>
+</li>
+</ul>
+<h1 id="测试">测试</h1>
+<ul>
+<li>使用命令：<code>hugo server --theme=mixedpaper --buildDrafts</code></li>
+<li><code>buildDrafts</code>表示包括草稿</li>
+<li>浏览器打开 <code>http://localhost:1313</code>查看页面</li>
+</ul>
+<h1 id="修改配置文件">修改配置文件</h1>
+<ul>
+<li>
+<p>修改<code>config.toml</code>，如下示例，具体配置要看对应主题的参数要求</p>
+<pre><code>baseURL = &quot;https://miluo-cc.github.io/&quot;
+languageCode = &quot;zh-CN&quot;
+title = &quot;miluo&quot;
+theme = &quot;mixedpaper&quot;
+author = &quot;miluo&quot;
+copyright = &quot;&amp;copy; 2020. All rights reserved.&quot;
+</code></pre></li>
+</ul>
+<h1 id="部署到github">部署到github</h1>
+<ul>
+<li>
+<p>使用命令：<code>hugo --baseUrl=&quot;https://miluo-cc.github.io&quot;</code></p>
+</li>
+<li>
+<p>项目根目录多出<code>public</code>文件夹，里面是整个网站</p>
+</li>
+<li>
+<p>初次部署</p>
+<pre><code>$ cd public
+$ git init
+$ git remote add origin git@github.com:miluo-cc/miluo-cc.github.io.git
+$ git add -A
+$ git commit -m &quot;first commit&quot;
+$ git push -u origin master
+</code></pre></li>
+<li>
+<p>访问<code>https://miluo-cc.github.io</code>查看效果</p>
+</li>
+</ul>
+<h1 id="后续添加文件">后续添加文件</h1>
+<ul>
+<li><code>hugo new post/new_file.md</code></li>
+<li><code>hugo --buildDrafts</code></li>
+<li><code>cd public</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m &quot;a new blog&quot;</code></li>
+<li><code>git push origin master</code></li>
+</ul>
+
+    </div>
+    <div class="info post_meta">
+      <time datetime=2020-05-13T13:11:31&#43;0800 class="date">Wednesday, May 13, 2020</time>
+      
+        <ul class="tags">
+        
+          <li> <a href="https://miluo-cc.github.io/tagsmarkdown">markdown</a> </li>
+        
+          <li> <a href="https://miluo-cc.github.io/tags%E6%95%99%E7%A8%8B">教程</a> </li>
+        
+        </ul>
+      
+      
+    </div>
+    <div class="clearfix"></div>
+  </article>
+	
+		<div class="other_posts">
+			
+			
+		</div>
+		<aside id="comments">
+</aside>
+
+	
+</section>
+
+        <a id="back_to_top" title="Go To Top" href="#">
+  <span>
+    <svg viewBox="0 0 24 24">
+      <path fill="none" d="M0 0h24v24H0z"></path>
+      <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"></path>
+    </svg>
+  </span>
+</a>
+
+        <footer id="footer">
+  <p>
+    <span>&copy; 2020 <a href="https://miluo-cc.github.io/" title="miluo">miluo</a> </span>
+    <span>Built with <a rel="nofollow" target="_blank" href="https:/gohugo.io">Hugo</a></span>
+    <span>Theme by <a rel="nofollow" target="_blank" href="https://github.com/wayjam/hugo-theme-mixedpaper">WayJam</a></span>
+  </p>
+
+  <script src="https://miluo-cc.github.io/js/main.min.eac174914a2c8d5b3cc7d2f766c41a23844a384c95187d52847b0b2e8c2b77a1.js" integrity="sha256-6sF0kUosjVs8x9L3ZsQaI4RKOEyVGH1ShHsLLowrd6E=" crossorigin="anonymous"></script>
+</footer>
+
+    </body>
+</html>
