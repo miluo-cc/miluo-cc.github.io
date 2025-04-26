@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasm YoloV8</title>
+
+    
+<link rel="modulepreload" href="./app-2da1446746d19004.js" crossorigin=anonymous integrity="sha384-rL04P5KstRmEV1Ox9TypfkBLcfNiFHpOv2UQ85J47MAfSvkdJnnSihi3R9zGE/90"><link rel="preload" href="./app-2da1446746d19004_bg.wasm" crossorigin=anonymous integrity="sha384-ZWxmlaR9VjazWIlfBQu4uaLsZkm/byNNWuoTrxy4Jpfw2xc4ygXCbvsr3VJq7FFS" as="fetch" type="application/wasm"></head>
+
+<body>
+    
+<script type="module" nonce="UL9T4MX69dL7cYUZMHk2lw==">
+import init, * as bindings from './app-2da1446746d19004.js';
+const wasm = await init({ module_or_path: './app-2da1446746d19004_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+    
+
+    <canvas id="cmos-video-local" width="640" height="640"></canvas>
+    <canvas id="cmos-video-remote" width="640" height="640"></canvas>
+
+    <script type="module">
+
+        addEventListener("TrunkApplicationStarted", async (event) => {
+            const yolov8 = new window.wasmBindings.YoloV8SDK(1, '--log_level=debug', "0.0.1");
+
+            var media_config = { audio: false, video: { width: { min: 640, ideal: 640, max: 640 }, height: { min: 640, ideal: 640, max: 640 }, frameRate: { min: 10, ideal: 15, max: 30 } } };
+            const media_stream = await navigator.mediaDevices.getUserMedia(media_config);
+            const video_track = media_stream.getTracks()[0];
+
+            const track_processor = new MediaStreamTrackProcessor(video_track);
+            const reader = track_processor.readable.getReader();
+
+            var canvas_local = document.getElementById("cmos-video-local");
+            var ctx_local = canvas_local.getContext("2d");
+
+            var canvas_remote = document.getElementById("cmos-video-remote");
+            var ctx_remote = canvas_remote.getContext("2d");
+
+            let image_width = 640, image_height = 640;
+            let start_the_wold = false;
+
+            yolov8.load_model().then(() => { start_the_wold = true; });
+
+            let colors = ["red", "green", "blue"];
+            let res;
+            while (true) {
+                const result = await reader.read();
+                if (result.done) break;
+
+                const frame = result.value;
+                ctx_local.drawImage(frame, 0, 0, image_width, image_height);
+                let image = ctx_local.getImageData(0, 0, image_width, image_height);
+                //
+                if (start_the_wold && yolov8.is_ready()) {
+                    yolov8.inference(image.data, image.width, image.height);
+                    res = yolov8.get_inference_result();
+                    // console.log(res);
+                }
+                ctx_remote.putImageData(image, 0, 0, 0, 0, image_width, image_height);
+                if (res) {
+                    for (var i = 0; i < res.bboxes.length; i++) {
+                        for (var j = 0; j < res.bboxes[i].length; j++) {
+                            let r = res.bboxes[i][j];
+                            let x = r.xmin;
+                            let y = r.ymin;
+                            let w = r.xmax - x;
+                            let h = r.ymax - y;
+                            ctx_remote.strokeStyle = colors[i % 3];
+                            ctx_remote.strokeRect(x, y, w, h);
+                        }
+                    }
+                }
+                // 
+                frame.close();
+            }
+        }
+        );
+
+    </script>
+</body>
+
+</html>
