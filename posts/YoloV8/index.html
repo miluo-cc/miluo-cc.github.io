@@ -7,13 +7,13 @@
     <title>Wasm YoloV8</title>
 
     
-<link rel="modulepreload" href="./app-2da1446746d19004.js" crossorigin=anonymous integrity="sha384-rL04P5KstRmEV1Ox9TypfkBLcfNiFHpOv2UQ85J47MAfSvkdJnnSihi3R9zGE/90"><link rel="preload" href="./app-2da1446746d19004_bg.wasm" crossorigin=anonymous integrity="sha384-ZWxmlaR9VjazWIlfBQu4uaLsZkm/byNNWuoTrxy4Jpfw2xc4ygXCbvsr3VJq7FFS" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/app-2da1446746d19004.js" crossorigin=anonymous integrity="sha384-rL04P5KstRmEV1Ox9TypfkBLcfNiFHpOv2UQ85J47MAfSvkdJnnSihi3R9zGE/90"><link rel="preload" href="/app-2da1446746d19004_bg.wasm" crossorigin=anonymous integrity="sha384-ZWxmlaR9VjazWIlfBQu4uaLsZkm/byNNWuoTrxy4Jpfw2xc4ygXCbvsr3VJq7FFS" as="fetch" type="application/wasm"></head>
 
 <body>
     
-<script type="module" nonce="UL9T4MX69dL7cYUZMHk2lw==">
-import init, * as bindings from './app-2da1446746d19004.js';
-const wasm = await init({ module_or_path: './app-2da1446746d19004_bg.wasm' });
+<script type="module" nonce="guqJe3L3A13q+jYLFQjBjA==">
+import init, * as bindings from '/app-2da1446746d19004.js';
+const wasm = await init({ module_or_path: '/app-2da1446746d19004_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -65,7 +65,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
                     res = yolov8.get_inference_result();
                     // console.log(res);
                 }
-                ctx_remote.putImageData(image, 0, 0, 0, 0, image_width, image_height);
+                ctx_local.putImageData(image, 0, 0, 0, 0, image_width, image_height);
                 if (res) {
                     for (var i = 0; i < res.bboxes.length; i++) {
                         for (var j = 0; j < res.bboxes[i].length; j++) {
@@ -74,8 +74,8 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
                             let y = r.ymin;
                             let w = r.xmax - x;
                             let h = r.ymax - y;
-                            ctx_remote.strokeStyle = colors[i % 3];
-                            ctx_remote.strokeRect(x, y, w, h);
+                            ctx_local.strokeStyle = colors[i % 3];
+                            ctx_local.strokeRect(x, y, w, h);
                         }
                     }
                 }
