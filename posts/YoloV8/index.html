@@ -11,7 +11,7 @@
 
 <body>
     
-<script type="module" nonce="KCuLYWzkVlj+dKCidSf/3w==">
+<script type="module" nonce="4oCa22skHALs9uTnotAzrg==">
 import init, * as bindings from '/posts/YoloV8/app-ec9fd79af803d771.js';
 const wasm = await init({ module_or_path: '/posts/YoloV8/app-ec9fd79af803d771_bg.wasm' });
 
@@ -65,7 +65,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
                     res = yolov8.get_inference_result();
                     // console.log(res);
                 }
-                ctx_local.putImageData(image, 0, 0, 0, 0, image_width, image_height);
+                ctx_remote.putImageData(image, 0, 0, 0, 0, image_width, image_height);
                 if (res) {
                     for (var i = 0; i < res.bboxes.length; i++) {
                         for (var j = 0; j < res.bboxes[i].length; j++) {
@@ -74,8 +74,8 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
                             let y = r.ymin;
                             let w = r.xmax - x;
                             let h = r.ymax - y;
-                            ctx_local.strokeStyle = colors[i % 3];
-                            ctx_local.strokeRect(x, y, w, h);
+                            ctx_remote.strokeStyle = colors[i % 3];
+                            ctx_remote.strokeRect(x, y, w, h);
                         }
                     }
                 }
