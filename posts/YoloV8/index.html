@@ -31,7 +31,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         addEventListener("TrunkApplicationStarted", async (event) => {
             const log_level = 'debug';
             const cpu_cores = navigator.hardwareConcurrency || 1;
-            let argv = `--log_level=${log_level} --worker_nums=${cpu_cores}`;
+            let argv = `--log_level=${log_level} --worker_nums=4`;
             const yolov8 = new window.wasmBindings.YoloV8SDK(2, argv, "0.0.1");
 
             var media_config = { audio: false, video: { width: { min: 640, ideal: 640, max: 640 }, height: { min: 640, ideal: 640, max: 640 }, frameRate: { min: 10, ideal: 15, max: 25 } } };
