@@ -227,7 +227,7 @@ function passArray8ToWasm0(arg, malloc) {
     return ptr;
 }
 function __wbg_adapter_46(arg0, arg1, arg2) {
-    wasm.closure2_externref_shim(arg0, arg1, arg2);
+    wasm.closure22_externref_shim(arg0, arg1, arg2);
 }
 
 function __wbg_adapter_49(arg0, arg1, arg2) {
@@ -664,12 +664,12 @@ function __wbg_get_imports() {
         const ret = false;
         return ret;
     };
-    imports.wbg.__wbindgen_closure_wrapper1053 = function(arg0, arg1, arg2) {
+    imports.wbg.__wbindgen_closure_wrapper1052 = function(arg0, arg1, arg2) {
         const ret = makeMutClosure(arg0, arg1, 46, __wbg_adapter_49);
         return ret;
     };
-    imports.wbg.__wbindgen_closure_wrapper88 = function(arg0, arg1, arg2) {
-        const ret = makeClosure(arg0, arg1, 3, __wbg_adapter_46);
+    imports.wbg.__wbindgen_closure_wrapper159 = function(arg0, arg1, arg2) {
+        const ret = makeClosure(arg0, arg1, 23, __wbg_adapter_46);
         return ret;
     };
     imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {

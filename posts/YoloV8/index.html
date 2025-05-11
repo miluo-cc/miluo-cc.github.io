@@ -7,13 +7,13 @@
     <title>Wasm YoloV8</title>
 
     
-<link rel="modulepreload" href="/posts/YoloV8/app-2d42b70ea175f6fb.js" crossorigin="anonymous" integrity="sha384-f5LFHK/pfQJZQDacjWpdNgBtF7XkJg+/XTN1zTyBiTzUfzdIOk6dBoQlyVorjPII"><link rel="preload" href="/posts/YoloV8/app-2d42b70ea175f6fb_bg.wasm" crossorigin="anonymous" integrity="sha384-G1pkPbQJIJY8xQdMsPZR3E13Ia99NU/vUdTvmzIpdPPT58vefImLG8IUfmgov4Pw" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/posts/YoloV8/app-c9fd810b02d4ea32.js" crossorigin="anonymous" integrity="sha384-S4qQxOzO0HOjM53GJIrGfK/Gmksa1Gnchbl3JRCzkIU5NCSIV2BX9keD6w+nGTui"><link rel="preload" href="/posts/YoloV8/app-c9fd810b02d4ea32_bg.wasm" crossorigin="anonymous" integrity="sha384-rP7FOKUknEMsv+KOL8OFNiWQMqNPZCo9yaVMMADNYn6FZI3t+pK4yZRduy+V6w5e" as="fetch" type="application/wasm"></head>
 
 <body>
     
 <script type="module">
-import init, * as bindings from '/posts/YoloV8/app-2d42b70ea175f6fb.js';
-const wasm = await init({ module_or_path: '/posts/YoloV8/app-2d42b70ea175f6fb_bg.wasm' });
+import init, * as bindings from '/posts/YoloV8/app-c9fd810b02d4ea32.js';
+const wasm = await init({ module_or_path: '/posts/YoloV8/app-c9fd810b02d4ea32_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -31,7 +31,8 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         addEventListener("TrunkApplicationStarted", async (event) => {
             const log_level = 'debug';
             const cpu_cores = navigator.hardwareConcurrency || 1;
-            let argv = `--log_level=${log_level} --worker_nums=${cpu_cores}`;
+            const worker_nums = parseInt((cpu_cores + 1) / 2);
+            let argv = `--log_level=${log_level} --worker_nums=${worker_nums}`;
             const yolov8 = new window.wasmBindings.YoloV8SDK(2, argv, "0.0.1");
 
             var media_config = { audio: false, video: { width: { min: 640, ideal: 640, max: 640 }, height: { min: 640, ideal: 640, max: 640 }, frameRate: { min: 10, ideal: 15, max: 25 } } };
